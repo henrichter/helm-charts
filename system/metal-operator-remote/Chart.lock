@@ -4,6 +4,6 @@ dependencies:
   version: 1.0.0
 - name: metal-operator
   repository: oci://ghcr.io/ironcore-dev/charts
-  version: 0.0.0-8d58f19-crds
-digest: sha256:3fb21661fe88d21632f7d7ea7d9fd8993ed45bb431a254f34346727c69cb0799
-generated: "2026-01-15T11:48:52.067644+01:00"
+  version: 0.3.1-20260223170257-587fb33-crds
+digest: sha256:1dd20fe0d68d2c65276526361ce0580a343853007a20cc17af9885977537fe93
+generated: "2026-02-24T13:47:48.241078+01:00"

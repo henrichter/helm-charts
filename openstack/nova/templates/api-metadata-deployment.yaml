@@ -16,13 +16,14 @@ metadata:
 spec:
   replicas: {{ .Values.pod.replicas.metadata }}
   revisionHistoryLimit: {{ .Values.pod.lifecycle.upgrades.deployments.revision_history }}
+  {{- $strategy := dig "metadata" "podReplacementStrategy" .Values.pod.lifecycle.upgrades.deployments.podReplacementStrategy .Values.pod.lifecycle.upgrades.deployments.overrides }}
   strategy:
-    type: {{ .Values.pod.lifecycle.upgrades.deployments.podReplacementStrategy }}
-    {{ if eq .Values.pod.lifecycle.upgrades.deployments.podReplacementStrategy "RollingUpdate" }}
+    type: {{ $strategy }}
+    {{- if eq $strategy "RollingUpdate" }}
     rollingUpdate:
       maxUnavailable: {{ .Values.pod.lifecycle.upgrades.deployments.rollingUpdate.maxUnavailable }}
       maxSurge: {{ .Values.pod.lifecycle.upgrades.deployments.rollingUpdate.maxSurge }}
-    {{ end }}
+    {{- end }}
   selector:
     matchLabels:
       name: nova-api-metadata
@@ -49,7 +50,7 @@ spec:
       terminationGracePeriodSeconds: {{ .Values.defaults.default.graceful_shutdown_timeout | add 5 }}
       hostname: nova-api-metadata
       initContainers:
-      {{- tuple . (dict "service" (include "nova.helpers.api_db" .) "jobs" (tuple . "db-migrate" | include "job_name")) | include "utils.snippets.kubernetes_entrypoint_init_container" | indent 6 }}
+      {{- tuple . (dict "service" (include "nova.helpers.db_service" (tuple . "api")) "jobs" (tuple . "db-migrate" | include "job_name")) | include "utils.snippets.kubernetes_entrypoint_init_container" | indent 6 }}
       {{- if .Values.proxysql.native_sidecar }}
       {{- tuple . .Values.api_metadata.config_file.DEFAULT.metadata_workers | include "utils.proxysql.container" | indent 6 }}
       {{- end }}

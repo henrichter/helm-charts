@@ -1,9 +1,9 @@
 dependencies:
 - name: kvm-node-agent
   repository: oci://keppel.eu-de-1.cloud.sap/ccloud-ghcr-io-mirror/cobaltcore-dev/charts
-  version: 0.1.7
+  version: 0.1.11
 - name: owner-info
   repository: oci://keppel.eu-de-1.cloud.sap/ccloud-helm
   version: 1.0.0
-digest: sha256:a4192166be1f5fc748317182f6cb5fdc389beda8e5d809827e83a2105c6d4533
-generated: "2026-01-06T16:54:01.788976549Z"
+digest: sha256:26fa9f19a8407a337b69a83f7580290fb8fcc16806a6638cd5e455581e9ed85b
+generated: "2026-02-24T18:50:37.133886968Z"

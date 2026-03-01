@@ -2,6 +2,10 @@ ldapUrl: url
 ldapBaseOu: ou
 ldapBindUser: user
 ldapBindPassword: pass
+# ldapBindPassword: vault+kvv2:///path/to/secret
 ldapAccessFilter: filter
 sudoersGroups:
   - group
+
+# sssd:
+#   caseSensitive: false
